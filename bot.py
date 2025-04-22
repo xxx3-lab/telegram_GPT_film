@@ -19,6 +19,23 @@ def start(message):
     bot.send_message(message.chat.id, 'Выберите действие:', reply_markup=markup) # отправляем сообщение с клавиатурой
 
 
+# Обработка нажатия на кнопку "GPT CHAT"
+@bot.message_handler(func=lambda message: message.text == 'GPT CHAT')
+def gpt_chat(message):
+    bot.send_message(message.chat.id, 'Вы выбрали GPT CHAT. Введите ваш запрос:') # отправляем сообщение с просьбой ввести запрос
+    bot.register_next_step_handler(message, process_gpt_request) # регистрируем следующий шаг для обработки запроса к GPT
+
+# Обработка запроса к GPT
+def process_gpt_request(message):
+    # Здесь будет код для обработки запроса к GPT и отправки ответа пользователю
+    bot.send_message(message.chat.id, 'Ваш запрос был отправлен на обработку. Пожалуйста, подождите...') # отправляем сообщение о начале обработки запроса
+    # Здесь будет код для отправки запроса к GPT и получения ответа
+    # После получения ответа от GPT, отправляем его пользователю:
+    bot.send_message(message.chat.id, 'Ответ от GPT: ...') # отправляем ответ от GPT пользователю
+    # Здесь будет код для отправки ответа пользователю
+    # Например: bot.send_message(message.chat.id, 'Ответ от GPT: ' + response)
+    # где response - это переменная, содержащая ответ от GPT
+
 
 
 
